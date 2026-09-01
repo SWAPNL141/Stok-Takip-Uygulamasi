@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="stok_takip_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="kategoriler">
+    <Key>
+      <PropertyRef Name="kategori_id" />
+    </Key>
+    <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategori_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK_urunler_kategoriler" FromRole="kategoriler" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="musteriler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad_soyad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="adres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="satislar" Relationship="Self.FK_satislar_musteriler" FromRole="musteriler" ToRole="satislar" />
+    <Property Name="firma_adi" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="personeller">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="soyad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="kullanici_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="yetki_id" Type="Int32" />
+    <NavigationProperty Name="yetkiler" Relationship="Self.FK_personeller_yetkiler" FromRole="personeller" ToRole="yetkiler" />
+    <NavigationProperty Name="satislar" Relationship="Self.FK_satislar_personeller" FromRole="personeller" ToRole="satislar" />
+    <Property Name="adres" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="satis_detaylari">
+    <Key>
+      <PropertyRef Name="satis_detay_id" />
+    </Key>
+    <Property Name="satis_detay_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="satis_id" Type="Int32" />
+    <Property Name="urun_kodu" Type="Int32" />
+    <Property Name="miktar" Type="Int32" Nullable="false" />
+    <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="satislar" Relationship="Self.FK_satis_detaylari_satislar" FromRole="satis_detaylari" ToRole="satislar" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK_satis_detaylari_urunler" FromRole="satis_detaylari" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="satislar">
+    <Key>
+      <PropertyRef Name="satis_id" />
+    </Key>
+    <Property Name="satis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteri_id" Type="Int32" />
+    <Property Name="personel_id" Type="Int32" />
+    <Property Name="satis_tarih" Type="DateTime" Precision="3" />
+    <Property Name="notlar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="musteriler" Relationship="Self.FK_satislar_musteriler" FromRole="satislar" ToRole="musteriler" />
+    <NavigationProperty Name="personeller" Relationship="Self.FK_satislar_personeller" FromRole="satislar" ToRole="personeller" />
+    <NavigationProperty Name="satis_detaylari" Relationship="Self.FK_satis_detaylari_satislar" FromRole="satislar" ToRole="satis_detaylari" />
+  </EntityType>
+  <EntityType Name="tedarikciler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firma_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="yetkili_adi_soyadi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="telefon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="adres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="urunler" Relationship="Self.FK_urunler_tedarikciler" FromRole="tedarikciler" ToRole="urunler" />
+  </EntityType>
+  <EntityType Name="urunler">
+    <Key>
+      <PropertyRef Name="urun_kodu" />
+    </Key>
+    <Property Name="urun_kodu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urun_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kategori_id" Type="Int32" />
+    <Property Name="tedarikci_id" Type="Int32" />
+    <Property Name="stok_adedi" Type="Int32" />
+    <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="kategoriler" Relationship="Self.FK_urunler_kategoriler" FromRole="urunler" ToRole="kategoriler" />
+    <NavigationProperty Name="satis_detaylari" Relationship="Self.FK_satis_detaylari_urunler" FromRole="urunler" ToRole="satis_detaylari" />
+    <NavigationProperty Name="tedarikciler" Relationship="Self.FK_urunler_tedarikciler" FromRole="urunler" ToRole="tedarikciler" />
+  </EntityType>
+  <EntityType Name="yetkiler">
+    <Key>
+      <PropertyRef Name="yetki_id" />
+    </Key>
+    <Property Name="yetki_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yetki_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="personeller" Relationship="Self.FK_personeller_yetkiler" FromRole="yetkiler" ToRole="personeller" />
+  </EntityType>
+  <Association Name="FK_urunler_kategoriler">
+    <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kategoriler">
+        <PropertyRef Name="kategori_id" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="kategori_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_satislar_musteriler">
+    <End Role="musteriler" Type="Self.musteriler" Multiplicity="0..1" />
+    <End Role="satislar" Type="Self.satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="musteriler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="satislar">
+        <PropertyRef Name="musteri_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_personeller_yetkiler">
+    <End Role="yetkiler" Type="Self.yetkiler" Multiplicity="0..1" />
+    <End Role="personeller" Type="Self.personeller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="yetkiler">
+        <PropertyRef Name="yetki_id" />
+      </Principal>
+      <Dependent Role="personeller">
+        <PropertyRef Name="yetki_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_satislar_personeller">
+    <End Role="personeller" Type="Self.personeller" Multiplicity="0..1" />
+    <End Role="satislar" Type="Self.satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="personeller">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="satislar">
+        <PropertyRef Name="personel_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_satis_detaylari_satislar">
+    <End Role="satislar" Type="Self.satislar" Multiplicity="0..1" />
+    <End Role="satis_detaylari" Type="Self.satis_detaylari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="satislar">
+        <PropertyRef Name="satis_id" />
+      </Principal>
+      <Dependent Role="satis_detaylari">
+        <PropertyRef Name="satis_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_satis_detaylari_urunler">
+    <End Role="urunler" Type="Self.urunler" Multiplicity="0..1" />
+    <End Role="satis_detaylari" Type="Self.satis_detaylari" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="urunler">
+        <PropertyRef Name="urun_kodu" />
+      </Principal>
+      <Dependent Role="satis_detaylari">
+        <PropertyRef Name="urun_kodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_urunler_tedarikciler">
+    <End Role="tedarikciler" Type="Self.tedarikciler" Multiplicity="0..1" />
+    <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tedarikciler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="urunler">
+        <PropertyRef Name="tedarikci_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="stok_takip_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="kategoriler" EntityType="Self.kategoriler" />
+    <EntitySet Name="musteriler" EntityType="Self.musteriler" />
+    <EntitySet Name="personeller" EntityType="Self.personeller" />
+    <EntitySet Name="satis_detaylari" EntityType="Self.satis_detaylari" />
+    <EntitySet Name="satislar" EntityType="Self.satislar" />
+    <EntitySet Name="tedarikciler" EntityType="Self.tedarikciler" />
+    <EntitySet Name="urunler" EntityType="Self.urunler" />
+    <EntitySet Name="yetkiler" EntityType="Self.yetkiler" />
+    <AssociationSet Name="FK_urunler_kategoriler" Association="Self.FK_urunler_kategoriler">
+      <End Role="kategoriler" EntitySet="kategoriler" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_satislar_musteriler" Association="Self.FK_satislar_musteriler">
+      <End Role="musteriler" EntitySet="musteriler" />
+      <End Role="satislar" EntitySet="satislar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_personeller_yetkiler" Association="Self.FK_personeller_yetkiler">
+      <End Role="yetkiler" EntitySet="yetkiler" />
+      <End Role="personeller" EntitySet="personeller" />
+    </AssociationSet>
+    <AssociationSet Name="FK_satislar_personeller" Association="Self.FK_satislar_personeller">
+      <End Role="personeller" EntitySet="personeller" />
+      <End Role="satislar" EntitySet="satislar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_satis_detaylari_satislar" Association="Self.FK_satis_detaylari_satislar">
+      <End Role="satislar" EntitySet="satislar" />
+      <End Role="satis_detaylari" EntitySet="satis_detaylari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_satis_detaylari_urunler" Association="Self.FK_satis_detaylari_urunler">
+      <End Role="urunler" EntitySet="urunler" />
+      <End Role="satis_detaylari" EntitySet="satis_detaylari" />
+    </AssociationSet>
+    <AssociationSet Name="FK_urunler_tedarikciler" Association="Self.FK_urunler_tedarikciler">
+      <End Role="tedarikciler" EntitySet="tedarikciler" />
+      <End Role="urunler" EntitySet="urunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

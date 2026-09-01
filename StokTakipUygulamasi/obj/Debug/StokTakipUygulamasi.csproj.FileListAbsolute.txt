@@ -1,0 +1,50 @@
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\StokTakipUygulamasi.exe.config
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\StokTakipUygulamasi.exe
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\StokTakipUygulamasi.pdb
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\EntityFramework.dll
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\EntityFramework.xml
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.csproj.AssemblyReference.cache
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmKategoriIslemleri.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.Properties.Resources.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.csproj.GenerateResource.cache
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.csproj.CoreCompileInputs.cache
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTaki.DF929595.Up2Date
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.exe
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.pdb
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.exe.config
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmTedarikciIslemler.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmAnaSayfa.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmGiris.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmMusteriIslemleri.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmPersonelIslemleri.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmSatisDetaylari.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmUrunIslemleri.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmStokuAzalanUrunler.resources
+C:\Users\SWAPNL141\source\repos\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.text.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\StokTakipUygulamasi.exe.config
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\StokTakipUygulamasi.exe
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\StokTakipUygulamasi.pdb
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\EntityFramework.dll
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\EntityFramework.xml
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.csproj.AssemblyReference.cache
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.exe.config
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmAnaSayfa.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmGiris.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmMusteriIslemleri.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmPersonelIslemleri.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmSatisDetaylari.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmStokuAzalanUrunler.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmUrunIslemleri.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmKategoriIslemleri.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.frmTedarikciIslemler.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.Properties.Resources.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.text.resources
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.csproj.GenerateResource.cache
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.csproj.CoreCompileInputs.cache
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTaki.DF929595.Up2Date
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.exe
+C:\Users\SWAPNL141\Desktop\Emirhan ÇAVUŞOĞLU - Stok Takip Uygulaması\StokTakipUygulamasi\obj\Debug\StokTakipUygulamasi.pdb

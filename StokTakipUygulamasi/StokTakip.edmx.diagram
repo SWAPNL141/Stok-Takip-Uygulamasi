@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dbb9d0631e184f20b0d2a45e7b08602b" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="stok_takip_dbModel.kategoriler" Width="1.5" PointX="4.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.musteriler" Width="1.5" PointX="2.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.personeller" Width="1.5" PointX="5.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.satis_detaylari" Width="1.5" PointX="7.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.satislar" Width="1.5" PointX="5.875" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.tedarikciler" Width="1.5" PointX="2.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.urunler" Width="1.5" PointX="4.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stok_takip_dbModel.yetkiler" Width="1.5" PointX="7.625" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_urunler_kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_satislar_musteriler" ManuallyRouted="false" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_personeller_yetkiler" ManuallyRouted="false" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_satislar_personeller" ManuallyRouted="false" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_satis_detaylari_satislar" ManuallyRouted="false" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_satis_detaylari_urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="stok_takip_dbModel.FK_urunler_tedarikciler" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

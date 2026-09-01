@@ -1,0 +1,556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="stok_takip_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_adi" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="musteriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad_soyad" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="telefon" Type="varchar" MaxLength="45" />
+          <Property Name="mail" Type="varchar" MaxLength="45" />
+          <Property Name="adres" Type="varchar" MaxLength="45" />
+          <Property Name="firma_adi" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="personeller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="soyad" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="telefon" Type="varchar" MaxLength="45" />
+          <Property Name="mail" Type="varchar" MaxLength="45" />
+          <Property Name="kullanici_adi" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="sifre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="yetki_id" Type="int" />
+          <Property Name="adres" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="satis_detaylari">
+          <Key>
+            <PropertyRef Name="satis_detay_id" />
+          </Key>
+          <Property Name="satis_detay_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="satis_id" Type="int" />
+          <Property Name="urun_kodu" Type="int" />
+          <Property Name="miktar" Type="int" Nullable="false" />
+          <Property Name="fiyat" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="satislar">
+          <Key>
+            <PropertyRef Name="satis_id" />
+          </Key>
+          <Property Name="satis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri_id" Type="int" />
+          <Property Name="personel_id" Type="int" />
+          <Property Name="satis_tarih" Type="datetime" />
+          <Property Name="notlar" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tedarikciler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firma_adi" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="yetkili_adi_soyadi" Type="varchar" MaxLength="45" />
+          <Property Name="telefon" Type="varchar" MaxLength="45" />
+          <Property Name="mail" Type="varchar" MaxLength="45" />
+          <Property Name="adres" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="urunler">
+          <Key>
+            <PropertyRef Name="urun_kodu" />
+          </Key>
+          <Property Name="urun_kodu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun_adi" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="kategori_id" Type="int" />
+          <Property Name="tedarikci_id" Type="int" />
+          <Property Name="stok_adedi" Type="int" />
+          <Property Name="fiyat" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="aciklama" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="yetkiler">
+          <Key>
+            <PropertyRef Name="yetki_id" />
+          </Key>
+          <Property Name="yetki_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yetki_adi" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="aciklama" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_personeller_yetkiler">
+          <End Role="yetkiler" Type="Self.yetkiler" Multiplicity="0..1" />
+          <End Role="personeller" Type="Self.personeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yetkiler">
+              <PropertyRef Name="yetki_id" />
+            </Principal>
+            <Dependent Role="personeller">
+              <PropertyRef Name="yetki_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satis_detaylari_satislar">
+          <End Role="satislar" Type="Self.satislar" Multiplicity="0..1" />
+          <End Role="satis_detaylari" Type="Self.satis_detaylari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="satislar">
+              <PropertyRef Name="satis_id" />
+            </Principal>
+            <Dependent Role="satis_detaylari">
+              <PropertyRef Name="satis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satis_detaylari_urunler">
+          <End Role="urunler" Type="Self.urunler" Multiplicity="0..1" />
+          <End Role="satis_detaylari" Type="Self.satis_detaylari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="urunler">
+              <PropertyRef Name="urun_kodu" />
+            </Principal>
+            <Dependent Role="satis_detaylari">
+              <PropertyRef Name="urun_kodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satislar_musteriler">
+          <End Role="musteriler" Type="Self.musteriler" Multiplicity="0..1" />
+          <End Role="satislar" Type="Self.satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="musteriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="satislar">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satislar_personeller">
+          <End Role="personeller" Type="Self.personeller" Multiplicity="0..1" />
+          <End Role="satislar" Type="Self.satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personeller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="satislar">
+              <PropertyRef Name="personel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_urunler_kategoriler">
+          <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+          <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="urunler">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_urunler_tedarikciler">
+          <End Role="tedarikciler" Type="Self.tedarikciler" Multiplicity="0..1" />
+          <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tedarikciler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="urunler">
+              <PropertyRef Name="tedarikci_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="stok_takip_dbModelStoreContainer">
+          <EntitySet Name="kategoriler" EntityType="Self.kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="musteriler" EntityType="Self.musteriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personeller" EntityType="Self.personeller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="satis_detaylari" EntityType="Self.satis_detaylari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="satislar" EntityType="Self.satislar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tedarikciler" EntityType="Self.tedarikciler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="urunler" EntityType="Self.urunler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yetkiler" EntityType="Self.yetkiler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_personeller_yetkiler" Association="Self.FK_personeller_yetkiler">
+            <End Role="yetkiler" EntitySet="yetkiler" />
+            <End Role="personeller" EntitySet="personeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satis_detaylari_satislar" Association="Self.FK_satis_detaylari_satislar">
+            <End Role="satislar" EntitySet="satislar" />
+            <End Role="satis_detaylari" EntitySet="satis_detaylari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satis_detaylari_urunler" Association="Self.FK_satis_detaylari_urunler">
+            <End Role="urunler" EntitySet="urunler" />
+            <End Role="satis_detaylari" EntitySet="satis_detaylari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satislar_musteriler" Association="Self.FK_satislar_musteriler">
+            <End Role="musteriler" EntitySet="musteriler" />
+            <End Role="satislar" EntitySet="satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satislar_personeller" Association="Self.FK_satislar_personeller">
+            <End Role="personeller" EntitySet="personeller" />
+            <End Role="satislar" EntitySet="satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_urunler_kategoriler" Association="Self.FK_urunler_kategoriler">
+            <End Role="kategoriler" EntitySet="kategoriler" />
+            <End Role="urunler" EntitySet="urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_urunler_tedarikciler" Association="Self.FK_urunler_tedarikciler">
+            <End Role="tedarikciler" EntitySet="tedarikciler" />
+            <End Role="urunler" EntitySet="urunler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="stok_takip_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="urunler" Relationship="Self.FK_urunler_kategoriler" FromRole="kategoriler" ToRole="urunler" />
+        </EntityType>
+        <EntityType Name="musteriler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad_soyad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="satislar" Relationship="Self.FK_satislar_musteriler" FromRole="musteriler" ToRole="satislar" />
+          <Property Name="firma_adi" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personeller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="soyad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="yetki_id" Type="Int32" />
+          <NavigationProperty Name="yetkiler" Relationship="Self.FK_personeller_yetkiler" FromRole="personeller" ToRole="yetkiler" />
+          <NavigationProperty Name="satislar" Relationship="Self.FK_satislar_personeller" FromRole="personeller" ToRole="satislar" />
+          <Property Name="adres" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="satis_detaylari">
+          <Key>
+            <PropertyRef Name="satis_detay_id" />
+          </Key>
+          <Property Name="satis_detay_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="satis_id" Type="Int32" />
+          <Property Name="urun_kodu" Type="Int32" />
+          <Property Name="miktar" Type="Int32" Nullable="false" />
+          <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="satislar" Relationship="Self.FK_satis_detaylari_satislar" FromRole="satis_detaylari" ToRole="satislar" />
+          <NavigationProperty Name="urunler" Relationship="Self.FK_satis_detaylari_urunler" FromRole="satis_detaylari" ToRole="urunler" />
+        </EntityType>
+        <EntityType Name="satislar">
+          <Key>
+            <PropertyRef Name="satis_id" />
+          </Key>
+          <Property Name="satis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri_id" Type="Int32" />
+          <Property Name="personel_id" Type="Int32" />
+          <Property Name="satis_tarih" Type="DateTime" Precision="3" />
+          <Property Name="notlar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="musteriler" Relationship="Self.FK_satislar_musteriler" FromRole="satislar" ToRole="musteriler" />
+          <NavigationProperty Name="personeller" Relationship="Self.FK_satislar_personeller" FromRole="satislar" ToRole="personeller" />
+          <NavigationProperty Name="satis_detaylari" Relationship="Self.FK_satis_detaylari_satislar" FromRole="satislar" ToRole="satis_detaylari" />
+        </EntityType>
+        <EntityType Name="tedarikciler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firma_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="yetkili_adi_soyadi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="urunler" Relationship="Self.FK_urunler_tedarikciler" FromRole="tedarikciler" ToRole="urunler" />
+        </EntityType>
+        <EntityType Name="urunler">
+          <Key>
+            <PropertyRef Name="urun_kodu" />
+          </Key>
+          <Property Name="urun_kodu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kategori_id" Type="Int32" />
+          <Property Name="tedarikci_id" Type="Int32" />
+          <Property Name="stok_adedi" Type="Int32" />
+          <Property Name="fiyat" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kategoriler" Relationship="Self.FK_urunler_kategoriler" FromRole="urunler" ToRole="kategoriler" />
+          <NavigationProperty Name="satis_detaylari" Relationship="Self.FK_satis_detaylari_urunler" FromRole="urunler" ToRole="satis_detaylari" />
+          <NavigationProperty Name="tedarikciler" Relationship="Self.FK_urunler_tedarikciler" FromRole="urunler" ToRole="tedarikciler" />
+        </EntityType>
+        <EntityType Name="yetkiler">
+          <Key>
+            <PropertyRef Name="yetki_id" />
+          </Key>
+          <Property Name="yetki_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yetki_adi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personeller" Relationship="Self.FK_personeller_yetkiler" FromRole="yetkiler" ToRole="personeller" />
+        </EntityType>
+        <Association Name="FK_urunler_kategoriler">
+          <End Role="kategoriler" Type="Self.kategoriler" Multiplicity="0..1" />
+          <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="urunler">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satislar_musteriler">
+          <End Role="musteriler" Type="Self.musteriler" Multiplicity="0..1" />
+          <End Role="satislar" Type="Self.satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="musteriler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="satislar">
+              <PropertyRef Name="musteri_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personeller_yetkiler">
+          <End Role="yetkiler" Type="Self.yetkiler" Multiplicity="0..1" />
+          <End Role="personeller" Type="Self.personeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yetkiler">
+              <PropertyRef Name="yetki_id" />
+            </Principal>
+            <Dependent Role="personeller">
+              <PropertyRef Name="yetki_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satislar_personeller">
+          <End Role="personeller" Type="Self.personeller" Multiplicity="0..1" />
+          <End Role="satislar" Type="Self.satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personeller">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="satislar">
+              <PropertyRef Name="personel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satis_detaylari_satislar">
+          <End Role="satislar" Type="Self.satislar" Multiplicity="0..1" />
+          <End Role="satis_detaylari" Type="Self.satis_detaylari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="satislar">
+              <PropertyRef Name="satis_id" />
+            </Principal>
+            <Dependent Role="satis_detaylari">
+              <PropertyRef Name="satis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_satis_detaylari_urunler">
+          <End Role="urunler" Type="Self.urunler" Multiplicity="0..1" />
+          <End Role="satis_detaylari" Type="Self.satis_detaylari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="urunler">
+              <PropertyRef Name="urun_kodu" />
+            </Principal>
+            <Dependent Role="satis_detaylari">
+              <PropertyRef Name="urun_kodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_urunler_tedarikciler">
+          <End Role="tedarikciler" Type="Self.tedarikciler" Multiplicity="0..1" />
+          <End Role="urunler" Type="Self.urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tedarikciler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="urunler">
+              <PropertyRef Name="tedarikci_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="stok_takip_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kategoriler" EntityType="Self.kategoriler" />
+          <EntitySet Name="musteriler" EntityType="Self.musteriler" />
+          <EntitySet Name="personeller" EntityType="Self.personeller" />
+          <EntitySet Name="satis_detaylari" EntityType="Self.satis_detaylari" />
+          <EntitySet Name="satislar" EntityType="Self.satislar" />
+          <EntitySet Name="tedarikciler" EntityType="Self.tedarikciler" />
+          <EntitySet Name="urunler" EntityType="Self.urunler" />
+          <EntitySet Name="yetkiler" EntityType="Self.yetkiler" />
+          <AssociationSet Name="FK_urunler_kategoriler" Association="Self.FK_urunler_kategoriler">
+            <End Role="kategoriler" EntitySet="kategoriler" />
+            <End Role="urunler" EntitySet="urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satislar_musteriler" Association="Self.FK_satislar_musteriler">
+            <End Role="musteriler" EntitySet="musteriler" />
+            <End Role="satislar" EntitySet="satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personeller_yetkiler" Association="Self.FK_personeller_yetkiler">
+            <End Role="yetkiler" EntitySet="yetkiler" />
+            <End Role="personeller" EntitySet="personeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satislar_personeller" Association="Self.FK_satislar_personeller">
+            <End Role="personeller" EntitySet="personeller" />
+            <End Role="satislar" EntitySet="satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satis_detaylari_satislar" Association="Self.FK_satis_detaylari_satislar">
+            <End Role="satislar" EntitySet="satislar" />
+            <End Role="satis_detaylari" EntitySet="satis_detaylari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_satis_detaylari_urunler" Association="Self.FK_satis_detaylari_urunler">
+            <End Role="urunler" EntitySet="urunler" />
+            <End Role="satis_detaylari" EntitySet="satis_detaylari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_urunler_tedarikciler" Association="Self.FK_urunler_tedarikciler">
+            <End Role="tedarikciler" EntitySet="tedarikciler" />
+            <End Role="urunler" EntitySet="urunler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="stok_takip_dbModelStoreContainer" CdmEntityContainer="stok_takip_dbEntities">
+          <EntitySetMapping Name="kategoriler">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.kategoriler">
+              <MappingFragment StoreEntitySet="kategoriler">
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kategori_adi" ColumnName="kategori_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="musteriler">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.musteriler">
+              <MappingFragment StoreEntitySet="musteriler">
+                <ScalarProperty Name="firma_adi" ColumnName="firma_adi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad_soyad" ColumnName="ad_soyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personeller">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.personeller">
+              <MappingFragment StoreEntitySet="personeller">
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="yetki_id" ColumnName="yetki_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="satis_detaylari">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.satis_detaylari">
+              <MappingFragment StoreEntitySet="satis_detaylari">
+                <ScalarProperty Name="satis_detay_id" ColumnName="satis_detay_id" />
+                <ScalarProperty Name="satis_id" ColumnName="satis_id" />
+                <ScalarProperty Name="urun_kodu" ColumnName="urun_kodu" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="satislar">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.satislar">
+              <MappingFragment StoreEntitySet="satislar">
+                <ScalarProperty Name="satis_id" ColumnName="satis_id" />
+                <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+                <ScalarProperty Name="personel_id" ColumnName="personel_id" />
+                <ScalarProperty Name="satis_tarih" ColumnName="satis_tarih" />
+                <ScalarProperty Name="notlar" ColumnName="notlar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tedarikciler">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.tedarikciler">
+              <MappingFragment StoreEntitySet="tedarikciler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firma_adi" ColumnName="firma_adi" />
+                <ScalarProperty Name="yetkili_adi_soyadi" ColumnName="yetkili_adi_soyadi" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="urunler">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.urunler">
+              <MappingFragment StoreEntitySet="urunler">
+                <ScalarProperty Name="urun_kodu" ColumnName="urun_kodu" />
+                <ScalarProperty Name="urun_adi" ColumnName="urun_adi" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="tedarikci_id" ColumnName="tedarikci_id" />
+                <ScalarProperty Name="stok_adedi" ColumnName="stok_adedi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yetkiler">
+            <EntityTypeMapping TypeName="stok_takip_dbModel.yetkiler">
+              <MappingFragment StoreEntitySet="yetkiler">
+                <ScalarProperty Name="yetki_id" ColumnName="yetki_id" />
+                <ScalarProperty Name="yetki_adi" ColumnName="yetki_adi" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
